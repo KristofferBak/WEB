@@ -1,0 +1,45 @@
+extends layout
+
+block content
+    ul.breadcrumb
+        li
+            a(href="/") Home
+        li
+            a(href="/users") Users
+        li
+            a(href="/user/" + userId + "/workouts") Workouts
+
+    div.bs-docs-section
+        div.row
+                div.page-header
+                    h1#typography= title
+                div.bs-component
+                    table.table.table-striped
+                        thead
+                            tr
+                                th Name
+                                th Description
+                                th Set
+                                th Reps/time
+                                th
+                        tbody
+                            for object in exercises
+                                tr
+                                    td= object.name
+                                    td= object.description
+                                    td= object.set
+                                    td= object.reps
+                                    td
+                            form.form-inline(method='POST' action='/user/' + userId + '/workout/' + workoutId + '/exercises/createExercise')
+                                tr
+                                    td
+                                        input#name.form-control(type='text', placeholder='Name' name='name' required='true' value=(undefined === exercise ? '' : exercise.name) )
+                                    td
+                                        input#description.form-control(type='text', placeholder='Description' name='description' required='true' value=(undefined === exercise ? '' : exercise.description) )
+                                    td
+                                        input#set.form-control(type='text', placeholder='Set' name='set' required='true' value=(undefined === exercise ? '' : exercise.set) )
+                                    td
+                                        input#reps.form-control(type='text', placeholder='Reps/time' name='reps' required='true' value=(undefined === exercise ? '' : exercise.reps) )
+                                    td
+                                        div.btn-group.btn-lg
+                                            button.btn.btn-primary.btn-lg(type='submit') Add exercise
