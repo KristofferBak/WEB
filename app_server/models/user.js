@@ -20,6 +20,7 @@ const userSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Workout'
     }],
+    
     hash: String,
     salt: String
 });
@@ -44,8 +45,7 @@ userSchema.methods.generateJwt = function(){
         name: this.name,
        // workouts: new workouts(),
         exp: parseInt(expiry.getTime() / 1000),},
-         process.env.JWT_SECRET);
-    
+         process.env.JWT_SECRET);    
 };
 
 const User = mongoose.model('User', userSchema);

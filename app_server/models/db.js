@@ -65,3 +65,4 @@ process.on('SIGTERM', () => {
 require('./exercise');
 require('./workout');
 require('./user');
+require('./Activity');
