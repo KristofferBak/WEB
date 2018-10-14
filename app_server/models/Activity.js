@@ -6,11 +6,14 @@ const activitySchema = Schema({
         type: Date, default: Date.now,
         required: true
     },
-    workout: {
-        type: Schema.Types.ObjectId,
-        ref: 'Workout',
+    workoutId: {
+        type: String,
         required: true
-    }  
+    },
+    userId: {
+        type: String,
+        required: true
+    }   
 });
 
-const Activity = mongoose.model('Activity', activitySchema);
+const Activity = mongoose.model('Activity', activitySchema, 'activities');

@@ -4,26 +4,37 @@ const Workout = mongoose.model('Workout');
 
 const createActivity = function(req,res){
     Activity.create({
-        time: new Date
-    }, (err, Activity) => {
-        Workout.findByIdAndUpdate(
-            req.params.workoutId,
-            {$push: {exercises: Activity}},
-            {new: true},
-            (err, workout) => {
-                res.redirect('/user/' + req.params.userId + '/workout/' + req.params.workoutId + '/exercises/' ); //+ req.params.exerciseId  +'/createActivity'
-            }
-        )
-    } );        
+        time: new Date,
+        workoutId: req.params.workoutId,
+        userId: req.params.userId
+    });
+    res.redirect('/user/getAllActivity');            
 };
 
 const getAllActivity = function(req,res){
-    Activity.find({}, function(err, activities){
-        res.send(users);
+    Activity.find({}).exec(function(err, activity){
+       
     });
+    
+        //,        function(err, activities){res.send(users);}
+    //res.send(temp);
+        
+   // res.redirect('/users');
+};
+
+const sendJsonResponse = function(res, status, content){
+    res.status(status);
+    res.json(content);
 };
 
 module.exports = {
     createActivity,
     getAllActivity
+};
+
+module.exports.getAllActivity = function(req, res){
+    Activity.find().exec(function(err,activity){
+        sendJsonResponse(res, 200, activity);
+        res.render('activities', {activity: activity})
+    });
 };

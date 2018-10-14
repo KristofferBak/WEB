@@ -8,7 +8,6 @@ const passport = require('passport'); //skal gøres inden models definitionerne
 require('./app_server/models/db');
 require('./app_server/config/passport'); //gøres efter models definitionerne
 
-
 const indexRouter = require('./app_server/routes/index');
 //const routesApi = require('./app_api/routes/index'); 
 const usersRouter = require('./app_server/routes/users');

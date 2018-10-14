@@ -16,14 +16,17 @@ const ctrlActivities = require('../controllers/activities');
 router.get('/', ctrlUsers.getAllUsers);
 router.get('/users', ctrlUsers.getAllUsers);
 
-router.post('/user/:userId/workout/:workoutId/exercises/:exerciseId/createActivity', ctrlActivities.createActivity);
+router.post('/user/:userId/workout/:workoutId/createActivity', ctrlActivities.createActivity);
+router.get('/user/getAllActivity', ctrlActivities.getAllActivity);
 
 //router.get('/users/:id', ctrlUsers.getUser);
 
 router.post('/users/createUser', ctrlUsers.createUser);
 
+router.get('user/:userId/workout/:workoutId/exercises/:exerciseId/');
+
 router.get('/user/:userId/workouts', ctrlWorkouts.getUserId);
-router.post('/user/:userId/workouts/createWorkout',ctrlWorkouts.createWorkout);
+router.post('/user/:userId/workouts/createWorkout', ctrlWorkouts.createWorkout);
 
 router.get('/user/:userId/workout/:workoutId/exercises', ctrlExercises.getWorkoutId);
 router.post('/user/:userId/workout/:workoutId/exercises/createExercise', ctrlExercises.createExercise);
